@@ -40,40 +40,41 @@ export const LoginForm = () => {
   const onSubmit = (data: z.infer<typeof LoginSchema>) => {
     startTransition(async () => {
       try {
-        const response = await handleLogin(data);
+        // const response = await handleLogin(data);
+        // if (!response) {
+        //   throw new Error("Login response is undefined");
+        // }
+        // const authResponse = await getAuth(response.payload.res.token);
+        // if (
+        //   authResponse?.payload.role !== "ADMIN" &&
+        //   authResponse?.status === 200
+        // ) {
+        //   const res = await signInWithEmailAndPassword(
+        //     auth,
+        //     authResponse?.payload.email,
+        //     authResponse?.payload.password
+        //   );
 
-        if (!response) {
-          throw new Error("Login response is undefined");
-        }
-        const authResponse = await getAuth(response.payload.res.token);
-        if (
-          authResponse?.payload.role !== "ADMIN" &&
-          authResponse?.status === 200
-        ) {
-          const res = await signInWithEmailAndPassword(
-            auth,
-            authResponse?.payload.email,
-            authResponse?.payload.password
-          );
+        //   setUser({
+        //     id: res.user.uid,
+        //     email: authResponse?.payload.email,
+        //     avatar: authResponse?.payload.avatar,
+        //   });
+        // }
+        // if (response) {
+        //   login(response.payload.res.token);
+        //   updateProfile(authResponse?.payload);
+        // }
+        // router.push("/program");
+        // toast.success("Login Successfuly!", {
+        //   description: `${new Date().toLocaleString()}`,
+        //   action: {
+        //     label: "Close",
+        //     onClick: () => console.log("Close"),
+        //   },
+        // });
+        console.log(data);
 
-          setUser({
-            id: res.user.uid,
-            email: authResponse?.payload.email,
-            avatar: authResponse?.payload.avatar,
-          });
-        }
-        if (response) {
-          login(response.payload.res.token);
-          updateProfile(authResponse?.payload);
-        }
-        router.push("/program");
-        toast.success("Login Successfuly!", {
-          description: `${new Date().toLocaleString()}`,
-          action: {
-            label: "Close",
-            onClick: () => console.log("Close"),
-          },
-        });
       } catch (error) {
         toast.error("Login Failed!", {
           description: `${new Date().toLocaleString()}`,
