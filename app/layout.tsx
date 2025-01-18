@@ -1,16 +1,16 @@
-import { AuthStoreProvider } from '@/utils/providers/auth-provider';
+import { fetchGetAuthentication } from '@/service/auth';
 import './globals.css';
 import { cookies } from 'next/headers';
-import { getAuth } from "@/utils/auth";
 import { Toaster } from 'sonner';
-import { Footer } from '@/components/shared/footer';
+import { AuthStoreProvider } from '@/stores/providers/auth-provider';
+import { Footer } from '@/components/layout/footer';
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const cookiesResult = await cookies();
   const userCookie = cookiesResult.get("sessionToken");
   let res;
   if (userCookie) {
-    res = await getAuth(userCookie.value);
+    res = await fetchGetAuthentication(userCookie.value);
   }
   return (
     <html lang="en">

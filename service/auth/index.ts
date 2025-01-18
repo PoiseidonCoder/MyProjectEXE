@@ -7,7 +7,7 @@ import {
 } from "@/schemas";
 import { z } from "zod";
 
-export const handleSetNewPassword = async (
+export const fetchPutResetPassword = async (
     data: z.infer<typeof ChangePasswordSchema>
 ) => {
     const { password } = data;
@@ -36,7 +36,7 @@ export const handleSetNewPassword = async (
         console.log(error);
     }
 };
-export const handleChangePassword = async (
+export const fetchPutChangePassword = async (
     data: z.infer<typeof ChangePasswordSchema>,
     sessionToken: string
 ) => {
@@ -68,7 +68,7 @@ export const handleChangePassword = async (
         console.log(error);
     }
 };
-export const handleResetPassCode = async (data: z.infer<typeof OtpSchema>) => {
+export const handlePutResetNewPassCode = async (data: z.infer<typeof OtpSchema>) => {
     const { pin } = data;
     try {
          await fetch(
@@ -92,7 +92,7 @@ export const handleResetPassCode = async (data: z.infer<typeof OtpSchema>) => {
         console.log(error);
     }
 };
-export const handleSendResetCode = async (
+export const fetchPostSendResetCode = async (
     data: z.infer<typeof ForgotPasswordSchema>
 ) => {
     const { email } = data;
@@ -124,7 +124,7 @@ export const handleSendResetCode = async (
     }
 };
 
-export const handleVerifyCode = async (data: z.infer<typeof OtpSchema>) => {
+export const fetchPostfetchPostVerifyCode = async (data: z.infer<typeof OtpSchema>) => {
     const { pin } = data;
     try {
         const result = await fetch(
@@ -167,7 +167,7 @@ export const handleVerifyCode = async (data: z.infer<typeof OtpSchema>) => {
     }
 };
 
-export const handleRegister = async (data: z.infer<typeof SignUpSchema>) => {
+export const fetchPostRegister = async (data: z.infer<typeof SignUpSchema>) => {
     const { ...registerData } = data;
     try {
         const result = await fetch(
@@ -197,7 +197,7 @@ export const handleRegister = async (data: z.infer<typeof SignUpSchema>) => {
     }
 };
 
-export const handleLogin = async (data: z.infer<typeof LoginSchema>) => {
+export const fetchPostLogin = async (data: z.infer<typeof LoginSchema>) => {
     try {
         const result = await fetch(
             `${process.env.NEXT_PUBLIC_SERVER_PUBLIC_API_AUTH}/login`,
@@ -242,7 +242,7 @@ export const handleLogin = async (data: z.infer<typeof LoginSchema>) => {
     }
 };
 
-export const handleLogout = async () => {
+export const fetchDeleteLogout = async () => {
     try {
             await fetch(`${process.env.NEXT_PUBLIC_API}/auth/`, {
             method: "DELETE",
@@ -265,7 +265,7 @@ export const handleLogout = async () => {
     }
 };
 
-export const getAuth = async (sessionToken: string) => {
+export const fetchGetAuthentication = async (sessionToken: string) => {
     try {
         const result = await fetch(
             `${process.env.NEXT_PUBLIC_SERVER_PUBLIC_API_V1}/login`,

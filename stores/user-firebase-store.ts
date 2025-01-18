@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
-import { db } from "@/firebase";
+import { db } from "@/constants/firebase-config";
 
 const storage = {
    getItem: (name: string) => {

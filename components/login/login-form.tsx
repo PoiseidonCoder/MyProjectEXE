@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { LoginSchema } from "@/schemas";
-import { getAuth, handleLogin } from "@/utils/auth";
+import { getAuth, handleLogin } from "@/service/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
 import Link from "next/link";
@@ -21,7 +21,7 @@ import { toast } from "sonner";
 import { z } from "zod";
 import { signIn } from "next-auth/react";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "@/firebase";
+import { auth } from "@/constants/firebase-config";
 import useUserFirebaseStore from "@/stores/user-firebase-store";
 
 export const LoginForm = () => {
